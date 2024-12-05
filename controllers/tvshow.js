@@ -3,7 +3,7 @@ const Tvshow = require("../models/tvshow");
 
 // CRUD functions
 // get all tvshows
-const getTvshows = async (genre, rating, director) => {
+const getTvshows = async (genre, rating, premiere_year) => {
   // create a container for filter
   let filter = {};
   // if genre exists, pass it to the filter container
@@ -14,9 +14,9 @@ const getTvshows = async (genre, rating, director) => {
   if (rating) {
     filter.rating = { $gt: rating };
   }
-  // if director exist, pass into the filter container
-  if (director) {
-    filter.director = director;
+  // if premiere_year exist, pass into the filter container
+  if (premiere_year) {
+    filter.premiere_year = premiere_year;
   }
 
   // apply filter in .find()
@@ -57,8 +57,10 @@ const addNewTvshow = async (title,
 const updateTvshow = async (
   id,
   title,
-  director,
-  release_year,
+  creator,
+  premiere_year,
+  end_year,
+  seasons,
   genre,
   rating
 ) => {
@@ -66,8 +68,10 @@ const updateTvshow = async (
     id,
     {
       title,
-      director,
-      release_year,
+      creator,
+      premiere_year,
+      end_year,
+      seasons,
       genre,
       rating,
     },

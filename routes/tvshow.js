@@ -4,11 +4,11 @@ const router = express.Router();
 
 // import functions from controller
 const {
-  getTvshows,
-  getTvshow,
-  addNewTvshow,
-  updateTvshow,
-  deleteTvshow,
+  getTvShows,
+  getTvShow,
+  addNewTvShow,
+  updateTvShow,
+  deleteTvShow,
 } = require("../controllers/tvshow");
 
 /* 
@@ -27,9 +27,10 @@ router.get("/", async (req, res) => {
     const rating = req.query.rating;
     const director = req.query.director;
     // use the getTvshows from the controller to laod the tvshows data
-    const tvshows = await getTvshows(genre, rating, director);
+    const tvshows = await getTvShows(genre, rating, director);
     res.status(200).send(tvshows);
   } catch (error) {
+    console.log(error)
     res.status(400).send({
       error: error._message,
     });
